@@ -2,6 +2,8 @@
 
 import zork
 
+leaf = 0
+
 zork.Play_Zork()
 
 def PrintOutput(s):
