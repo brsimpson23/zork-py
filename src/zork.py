@@ -1,10 +1,13 @@
 import items
+import items
 
 leaf = 0
+fish = 0
 
 # Room 1
 # North of House
 def LakeRoom(north_house_inp, items):
+        global fish
         alive = True
         room_num = 1
 
@@ -14,8 +17,15 @@ def LakeRoom(north_house_inp, items):
                 print("---------------------------------------------------------")
                 print("You don't have a change of clothes and you aren't here on vacation.")
         elif north_house_inp.lower() == ("fish"):
-                print("---------------------------------------------------------")
-                print("You spend some time fishing but nothing seems to bite.")
+                if fish != 3:
+                        print("---------------------------------------------------------")
+                        print("You spend some time fishing but nothing seems to bite.")
+                        fish += 1
+                elif fish == 3:
+                        print("---------------------------------------------------------")
+                        print("You finally caught a fish!")
+                        print("Fish has been added to inventory.")
+                        
         elif north_house_inp.lower() == ("kick the bucket"):
                 alive = False
 
@@ -25,7 +35,44 @@ def LakeRoom(north_house_inp, items):
         return [room_num, alive]
 
 
-# Room = 4
+# Room 2
+# Maze Entrance
+def MazeEntrance(maze_inp, items):
+        alive = True
+        room_num = 2
+
+        if maze_inp.lower() == ("go north"):
+                room_num = 10
+        elif maze_inp.lower() == ("go south"):
+                room_num = 3
+        elif maze_inp.lower() == ("kick the bucket"):
+                alive = False
+        else:
+                print("---------------------------------------------------------")
+
+        return [room_num, alive]
+
+
+# Room 3
+# Maze Interior
+def MazeInterior(maze_inp, items):
+        alive = True
+        room_num = 3
+
+        if maze_inp.lower() == ("go north"):
+                room_num = 2
+        elif maze_inp.lower() == ("kick the bucket"):
+                alive = False
+        else:
+                print("---------------------------------------------------------")
+                print("The Grue found you and ate you!")
+                alive = False
+
+        return [room_num, alive]
+
+
+# Room 4
+# Front of House
 def FrontOfHouse(second, items):
         global leaf
         alive = True
@@ -40,6 +87,8 @@ def FrontOfHouse(second, items):
                 leaf = 1
         elif second.lower() == ("go north"):
                 room_num = 1
+        elif second.lower() == ("go east"):
+                room_num = 5
         elif second.lower() == ("open door"):
                 print("---------------------------------------------------------")
                 print("The door cannot be opened.")
@@ -64,7 +113,60 @@ def FrontOfHouse(second, items):
                 print("---------------------------------------------------------")
 
         return [room_num, alive]
-                
+
+
+# Room 5
+# Back of House
+def BackOfHouse(back_inp, items):
+        alive = True
+        room_num = 5
+
+        if back_inp.lower() == ("go south"):
+                room_num = 4
+        if back_inp.lower() == ("go west"):
+                room_num = 6
+                print("Opening a rickety window you climb into the house.")
+        elif back_inp.lower() == ("kick the bucket"):
+                alive = False
+        else:
+                print("---------------------------------------------------------")
+
+        return [room_num, alive]
+        
+
+# Room 6
+# Kitchen
+def KitchenRoom(kitchen_inp, items):
+        alive = True
+        room_num = 6
+
+        if kitchen_inp.lower() == ("go up"):
+                room_num = 7
+        if kitchen_inp.lower() == ("go east"):
+                room_num = 5
+        elif kitchen_inp.lower() == ("kick the bucket"):
+                alive = False
+        else:
+                print("---------------------------------------------------------")
+
+        return [room_num, alive]
+
+
+# Room 7
+# Attic
+def AtticRoom(attic_inp, items):
+        alive = True
+        room_num = 7
+
+        if attic_inp.lower() == ("go down"):
+                room_num = 6
+        elif attic_inp.lower() == ("kick the bucket"):
+                alive = False
+        else:
+                print("---------------------------------------------------------")
+
+        return [room_num, alive]
+
 
 # Room 8
 # Southwest Loop
@@ -83,6 +185,8 @@ def ForestRoom(forest_inp, items):
                 print("Storm-tossed trees block your way.")
         elif forest_inp.lower() == ("go east"):
                 room_num = 9
+        elif forest_inp.lower() == ("go northeast"):
+                room_num = 4
         elif forest_inp.lower() == ("kick the bucket"):
                 alive = False
         else:
@@ -98,8 +202,7 @@ def GratingRoom(grating_inp, items):
         room_num = 9
 
         if grating_inp.lower() == ("go south"):
-                print("---------------------------------------------------------")
-                print("You see a large ogre and turn around.")
+                room_num = 12
         elif grating_inp.lower() == ("descend grating"):
                 room_num = 10
         elif grating_inp.lower() == ("kick the bucket"):
@@ -118,6 +221,8 @@ def CaveRoom(cave_inp, items):
 
         if cave_inp.lower() == ("descend staircase"):
                 room_num = 11
+        elif cave_inp.lower() == ("go south"):
+                room_num = 2
         elif cave_inp.lower() == ("take skeleton"):
                 print("---------------------------------------------------------")
                 print("Why would you do that? Are you some sort of sicko?")
@@ -157,11 +262,46 @@ def TrunkRoom(last_inp, items):
                 print("---------------------------------------------------------")
 
         if alive:
+                continued = 0
                 # Exit loop at the end of game
                 exit_inp = input("Do you want to continue? Y/N ")
                 if exit_inp.lower() == ("n"):
                         exit()
                 if exit_inp.lower() == ("y"):
-                        Play_Zork()
+                        continued = 1
+                return continued
 
                         
+# Room 12
+# Ogre Clearing
+def OgreClearing(ogre_inp, items):
+        alive = True
+        room_num = 12
+
+        if ogre_inp.lower() == ("go north"):
+                room_num = 9
+        elif ogre_inp.lower() == ("escape"):
+                room_num = 9
+        elif ogre_inp.lower() == ("kill ogre"):
+                print("---------------------------------------------------------")
+                print("You have nothing you can harm the ogre with.")
+                print("The ogre ate you!")
+                alive = False
+        elif ogre_inp.lower() == ("befriend ogre"):
+                print("---------------------------------------------------------")
+                if fish in items:
+                        print("You befriended the ogre by giving the ogre the fish!")
+                        print("In return the ogre gave you the key.")
+                        print("Key has been added to your inventory.")
+                        room_num = 9
+                else:
+                        print("---------------------------------------------------------")
+                        print("You have nothing to befriend the ogre with.")
+                        print("The ogre ate you!")
+        elif ogre_inp.lower() == ("kick the bucket"):
+                alive = False
+        else:
+                print("---------------------------------------------------------")
+
+        return [room_num, alive]
+

@@ -11,3 +11,13 @@ To get started:
 1. Have Fun!
 
 **Note: This program is built to run on Python 3.**
+
+Custom Room Notes:
+
+The custom room is the clearing in which the ogre was initially discovered.  However, rather than just running away from the ogre, you now have options.
+
+The options that produce an output include:
+1. Kill Ogre - you are never given any items to kill the ogre and so instead the ogre eats you.
+2. Befriend Ogre - If you do not have a fish in your inventory you cannot befriend the ogre and the ogre eats you.  In order to acquire a fish, you must say fish three times while at the lake.  
+By befriending the ogre by giving it the fish, you get the key that opens the trunk at the end of the game. Automatically returns to previous room.
+3. Escape/Go North - returns you to the previous room.
