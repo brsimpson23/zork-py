@@ -1,17 +1,12 @@
 import items
 
+leaf = 0
+
 # Room 1
 # North of House
-def LakeRoom():
+def LakeRoom(north_house_inp, items):
         alive = True
         room_num = 1
-                
-        print("---------------------------------------------------------")
-        print("You find yourself at the edge of a beautiful lake aside rolling hills.")
-        print("A small pier juts out into the lake.")
-        print("A fishing rod rests on the pier.")
-        print("(You can see a white house in the distance to the south.)")
-        north_house_inp = input("What do you do? ")
 
         if north_house_inp.lower() == ("go south"):
                 room_num = 4
@@ -31,17 +26,10 @@ def LakeRoom():
 
 
 # Room = 4
-def FrontOfHouse():
+def FrontOfHouse(second, items):
         global leaf
         alive = True
         room_num = 4
-                
-        print("---------------------------------------------------------")
-        print("You are standing in an open field west of a white house, with a boarded front door.")
-        print("You can see a small lake to the north.")
-        print("(A secret path leads southwest into the forest.)")
-        print("There is a Small Mailbox.")
-        second = input("What do you do? ")
 
         if second.lower() == ("take mailbox"):
                 print("---------------------------------------------------------")
@@ -80,13 +68,9 @@ def FrontOfHouse():
 
 # Room 8
 # Southwest Loop
-def ForestRoom():
+def ForestRoom(forest_inp, items):
         alive = True
         room_num = 8
-                
-        print("---------------------------------------------------------")
-        print("This is a forest, with trees in all directions. To the east, there appears to be sunlight.")
-        forest_inp = input("What do you do? ")
 
         if forest_inp.lower() == ("go west"):
                 print("---------------------------------------------------------")
@@ -109,14 +93,9 @@ def ForestRoom():
 
 # Room 9
 # East Loop and Grating Input
-def GratingRoom():
+def GratingRoom(grating_inp, items):
         alive = True
         room_num = 9
-                
-        print("---------------------------------------------------------")
-        print("You are in a clearing, with a forest surrounding you on all sides. A path leads south.")
-        print("There is an open grating, descending into darkness.")
-        grating_inp = input("What do you do? ")
 
         if grating_inp.lower() == ("go south"):
                 print("---------------------------------------------------------")
@@ -133,14 +112,9 @@ def GratingRoom():
 
 # Room 10
 # Grating Loop and Cave Input
-def CaveRoom():
+def CaveRoom(cave_inp, items):
         alive = True
         room_num = 10
-                
-        print("---------------------------------------------------------")
-        print("You are in a tiny cave with a dark, forbidding staircase leading down.")
-        print("There is a skeleton of a human male in one corner.")
-        cave_inp = input("What do you do? ")
 
         if cave_inp.lower() == ("descend staircase"):
                 room_num = 11
@@ -170,14 +144,9 @@ def CaveRoom():
 
 # Room 11
 # End of game
-def TrunkRoom():
+def TrunkRoom(last_inp, items):
         alive = True
         room_num = 11
-                
-        print("---------------------------------------------------------")
-        print("You have entered a mud-floored room.")
-        print("Lying half buried in the mud is an old trunk, bulging with jewels.")
-        last_inp = input("What do you do? ")
 
         if last_inp.lower() == ("open trunk"):
                 print("---------------------------------------------------------")
