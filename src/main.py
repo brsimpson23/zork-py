@@ -56,7 +56,8 @@ def PlayZork():
         elif returns[0] == 6:
             print("---------------------------------------------------------")
             print("You find yourself in a dimly lit kitchen with dust covering the floor.")
-            print("A lantern rests on the kitchen island.")
+            if "lantern" in allItems[6]:
+                print("A lantern rests on the kitchen island.")
             print("A set of stairs go up to another room.")
             user_inp = input("What do you do? ")
             returns = zork.KitchenRoom(user_inp, items.allItems)

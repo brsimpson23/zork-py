@@ -68,11 +68,14 @@ def LakeRoom(north_house_inp, inventory):
         return [room_num, alive]
 
 
+lit = False
+
 # Room 2
 # Maze Entrance
 def MazeEntrance(maze_inp, inventory):
         alive = True
         room_num = 2
+        global lit
 
         if 'pick up' in maze_inp.lower():
                 item = (maze_inp.lower())[8:]
@@ -84,7 +87,10 @@ def MazeEntrance(maze_inp, inventory):
 
         elif 'use' in maze_inp.lower():
                 item = (maze_inp.lower())[4:]
-                items.useItem(item)
+                if items.useItem(item) and item == 'lantern':
+                        lit = True
+                else:
+                        items.useItem(item)
         
         elif maze_inp.lower() == 'show inventory' or maze_inp.lower() == 'inventory':
                 print("---------------------------------------------------------")
@@ -102,11 +108,15 @@ def MazeEntrance(maze_inp, inventory):
         return [room_num, alive]
 
 
+grue = False
+
 # Room 3
 # Maze Interior
 def MazeInterior(maze_inp, inventory):
         alive = True
         room_num = 3
+        global lit
+        global grue
 
         if 'pick up' in maze_inp.lower():
                 item = (maze_inp.lower())[8:]
@@ -118,7 +128,10 @@ def MazeInterior(maze_inp, inventory):
 
         elif 'use' in maze_inp.lower():
                 item = (maze_inp.lower())[4:]
-                items.useItem(item)
+                if items.useItem(item) and item == 'lantern':
+                        lit = True
+                else:
+                        items.useItem(item)
         
         elif maze_inp.lower() == 'show inventory' or maze_inp.lower() == 'inventory':
                 print("---------------------------------------------------------")
@@ -128,6 +141,18 @@ def MazeInterior(maze_inp, inventory):
                 room_num = 2
         elif maze_inp.lower() == ("kick the bucket"):
                 alive = False
+        elif not grue:
+                if not lit:
+                        print("---------------------------------------------------------")
+                        print("The Grue found you and ate you!")
+                        alive = False
+                else:
+                        print("---------------------------------------------------------")
+                        print("The Grue found you!")
+                        print("You must run away to avoid being eaten!")
+                        grue = True
+        elif grue and maze_inp.lower() == ("run away"):
+                room_num = 2
         else:
                 print("---------------------------------------------------------")
                 print("The Grue found you and ate you!")
@@ -440,11 +465,16 @@ def CaveRoom(cave_inp, inventory):
         return [room_num, alive]
 
 
+key = False
+locked = True
+
 # Room 11
 # End of game
 def TrunkRoom(last_inp, inventory):
         alive = True
         room_num = 11
+        global key
+        global locked
 
         if 'pick up' in last_inp.lower():
                 item = (last_inp.lower())[8:]
@@ -456,15 +486,31 @@ def TrunkRoom(last_inp, inventory):
 
         elif 'use' in last_inp.lower():
                 item = (last_inp.lower())[4:]
-                items.useItem(item)
+                if items.useItem(item) and item == 'key':
+                        key = True
+                else:
+                        items.useItem(item)
         
         elif last_inp.lower() == 'show inventory' or last_inp.lower() == 'inventory':
                 print("---------------------------------------------------------")
                 print(*items.inventory, sep = ', ')
 
+        if last_inp.lower() == ("unlock trunk"):
+                if key:
+                        print("---------------------------------------------------------")
+                        print("Trunk is now unlocked.")
+                else:
+                        print("---------------------------------------------------------")
+                        print("You need to use something to unlock the trunk")
+
         if last_inp.lower() == ("open trunk"):
-                print("---------------------------------------------------------")
-                print("You have found the Jade Statue and have completed your quest!")
+                if not locked:
+                        print("---------------------------------------------------------")
+                        print("You have found the Jade Statue and have completed your quest!")
+                else:
+                        print("---------------------------------------------------------")
+                        print("The trunk is still locked.")
+                              
         elif last.inp.lower() == ("kick the bucket"):
                 alive = False
         else:
