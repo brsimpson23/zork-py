@@ -32,6 +32,8 @@ def LakeRoom(north_house_inp, inventory):
                 item = (north_house_inp.lower())[4:]
                 if items.useItem(item) and item == 'fishing rod':
                         fishin = 1
+                else:
+                        items.useItem(item)             
         
         elif north_house_inp.lower() == 'show inventory' or north_house_inp.lower() == 'inventory':
                 print("---------------------------------------------------------")
@@ -72,7 +74,23 @@ def MazeEntrance(maze_inp, inventory):
         alive = True
         room_num = 2
 
-        if maze_inp.lower() == ("go north"):
+        if 'pick up' in maze_inp.lower():
+                item = (maze_inp.lower())[8:]
+                items.pick_up(item, room_num)
+
+        elif 'put down' in maze_inp.lower():
+                item = (maze_inp.lower())[9:]
+                items.put_down(item, room_num[1])
+
+        elif 'use' in maze_inp.lower():
+                item = (maze_inp.lower())[4:]
+                items.useItem(item)
+        
+        elif maze_inp.lower() == 'show inventory' or maze_inp.lower() == 'inventory':
+                print("---------------------------------------------------------")
+                print(*items.inventory, sep = ', ')
+
+        elif maze_inp.lower() == ("go north"):
                 room_num = 10
         elif maze_inp.lower() == ("go south"):
                 room_num = 3
@@ -90,7 +108,23 @@ def MazeInterior(maze_inp, inventory):
         alive = True
         room_num = 3
 
-        if maze_inp.lower() == ("go north"):
+        if 'pick up' in maze_inp.lower():
+                item = (maze_inp.lower())[8:]
+                items.pick_up(item, room_num)
+
+        elif 'put down' in maze_inp.lower():
+                item = (maze_inp.lower())[9:]
+                items.put_down(item, room_num[1])
+
+        elif 'use' in maze_inp.lower():
+                item = (maze_inp.lower())[4:]
+                items.useItem(item)
+        
+        elif maze_inp.lower() == 'show inventory' or maze_inp.lower() == 'inventory':
+                print("---------------------------------------------------------")
+                print(*items.inventory, sep = ', ')
+
+        elif maze_inp.lower() == ("go north"):
                 room_num = 2
         elif maze_inp.lower() == ("kick the bucket"):
                 alive = False
@@ -109,7 +143,23 @@ def FrontOfHouse(second, inventory):
         alive = True
         room_num = 4
 
-        if second.lower() == ("take mailbox"):
+        if 'pick up' in second.lower():
+                item = (second.lower())[8:]
+                items.pick_up(item, room_num)
+
+        elif 'put down' in second.lower():
+                item = (second.lower())[9:]
+                items.put_down(item, room_num[1])
+
+        elif 'use' in second.lower():
+                item = (second.lower())[4:]
+                items.useItem(item)
+        
+        elif second.lower() == 'show inventory' or second.lower() == 'inventory':
+                print("---------------------------------------------------------")
+                print(*items.inventory, sep = ', ')
+
+        elif second.lower() == ("take mailbox"):
                 print("---------------------------------------------------------")
                 print("It is securely anchored.")
         elif second.lower() == ("open mailbox"):
@@ -152,9 +202,25 @@ def BackOfHouse(back_inp, inventory):
         alive = True
         room_num = 5
 
-        if back_inp.lower() == ("go south"):
+        if 'pick up' in back_inp.lower():
+                item = (back_inp.lower())[8:]
+                items.pick_up(item, room_num)
+
+        elif 'put down' in back_inp.lower():
+                item = (back_inp.lower())[9:]
+                items.put_down(item, room_num[1])
+
+        elif 'use' in back_inp.lower():
+                item = (back_inp.lower())[4:]
+                items.useItem(item)
+        
+        elif back_inp.lower() == 'show inventory' or back_inp.lower() == 'inventory':
+                print("---------------------------------------------------------")
+                print(*items.inventory, sep = ', ')
+
+        elif back_inp.lower() == ("go south"):
                 room_num = 4
-        if back_inp.lower() == ("go west"):
+        elif back_inp.lower() == ("go west"):
                 room_num = 6
                 print("Opening a rickety window you climb into the house.")
         elif back_inp.lower() == ("kick the bucket"):
@@ -170,6 +236,22 @@ def BackOfHouse(back_inp, inventory):
 def KitchenRoom(kitchen_inp, inventory):
         alive = True
         room_num = 6
+
+        if 'pick up' in kitchen_inp.lower():
+                item = (kitchen_inp.lower())[8:]
+                items.pick_up(item, room_num)
+
+        elif 'put down' in kitchen_inp.lower():
+                item = (kitchen_inp.lower())[9:]
+                items.put_down(item, room_num[1])
+
+        elif 'use' in kitchen_inp.lower():
+                item = (kitchen_inp.lower())[4:]
+                items.useItem(item)
+        
+        elif kitchen_inp.lower() == 'show inventory' or kitchen_inp.lower() == 'inventory':
+                print("---------------------------------------------------------")
+                print(*items.inventory, sep = ', ')
 
         if kitchen_inp.lower() == ("go up stairs"):
                 room_num = 7
@@ -188,6 +270,22 @@ def KitchenRoom(kitchen_inp, inventory):
 def AtticRoom(attic_inp, inventory):
         alive = True
         room_num = 7
+
+        if 'pick up' in attic_inp.lower():
+                item = (attic_inp.lower())[8:]
+                items.pick_up(item, room_num)
+
+        elif 'put down' in attic_inp.lower():
+                item = (attic_inp.lower())[9:]
+                items.put_down(item, room_num[1])
+
+        elif 'use' in attic_inp.lower():
+                item = (attic_inp.lower())[4:]
+                items.useItem(item)
+        
+        elif attic_inp.lower() == 'show inventory' or attic_inp.lower() == 'inventory':
+                print("---------------------------------------------------------")
+                print(*items.inventory, sep = ', ')
 
         if 'pick up' in attic_inp.lower():
             item = (attic_inp.lower())[8:]
@@ -221,6 +319,22 @@ def ForestRoom(forest_inp, inventory):
         alive = True
         room_num = 8
 
+        if 'pick up' in forest_inp.lower():
+                item = (forest_inp.lower())[8:]
+                items.pick_up(item, room_num)
+
+        elif 'put down' in forest_inp.lower():
+                item = (forest_inp.lower())[9:]
+                items.put_down(item, room_num[1])
+
+        elif 'use' in forest_inp.lower():
+                item = (forest_inp.lower())[4:]
+                items.useItem(item)
+        
+        elif forest_inp.lower() == 'show inventory' or forest_inp.lower() == 'inventory':
+                print("---------------------------------------------------------")
+                print(*items.inventory, sep = ', ')
+
         if forest_inp.lower() == ("go west"):
                 print("---------------------------------------------------------")
                 print("You would need a machete to go further west.")
@@ -248,6 +362,22 @@ def GratingRoom(grating_inp, inventory):
         alive = True
         room_num = 9
 
+        if 'pick up' in grating_inp.lower():
+                item = (grating_inp.lower())[8:]
+                items.pick_up(item, room_num)
+
+        elif 'put down' in grating_inp.lower():
+                item = (grating_inp.lower())[9:]
+                items.put_down(item, room_num[1])
+
+        elif 'use' in grating_inp.lower():
+                item = (grating_inp.lower())[4:]
+                items.useItem(item)
+        
+        elif grating_inp.lower() == 'show inventory' or grating_inp.lower() == 'inventory':
+                print("---------------------------------------------------------")
+                print(*items.inventory, sep = ', ')
+
         if grating_inp.lower() == ("go south"):
                 room_num = 12
         elif grating_inp.lower() == ("descend grating"):
@@ -265,6 +395,22 @@ def GratingRoom(grating_inp, inventory):
 def CaveRoom(cave_inp, inventory):
         alive = True
         room_num = 10
+
+        if 'pick up' in cave_inp.lower():
+                item = (cave_inp.lower())[8:]
+                items.pick_up(item, room_num)
+
+        elif 'put down' in cave_inp.lower():
+                item = (cave_inp.lower())[9:]
+                items.put_down(item, room_num[1])
+
+        elif 'use' in cave_inp.lower():
+                item = (cave_inp.lower())[4:]
+                items.useItem(item)
+        
+        elif cave_inp.lower() == 'show inventory' or cave_inp.lower() == 'inventory':
+                print("---------------------------------------------------------")
+                print(*items.inventory, sep = ', ')
 
         if cave_inp.lower() == ("descend staircase"):
                 room_num = 11
@@ -300,6 +446,22 @@ def TrunkRoom(last_inp, inventory):
         alive = True
         room_num = 11
 
+        if 'pick up' in last_inp.lower():
+                item = (last_inp.lower())[8:]
+                items.pick_up(item, room_num)
+
+        elif 'put down' in last_inp.lower():
+                item = (last_inp.lower())[9:]
+                items.put_down(item, room_num[1])
+
+        elif 'use' in last_inp.lower():
+                item = (last_inp.lower())[4:]
+                items.useItem(item)
+        
+        elif last_inp.lower() == 'show inventory' or last_inp.lower() == 'inventory':
+                print("---------------------------------------------------------")
+                print(*items.inventory, sep = ', ')
+
         if last_inp.lower() == ("open trunk"):
                 print("---------------------------------------------------------")
                 print("You have found the Jade Statue and have completed your quest!")
@@ -318,12 +480,42 @@ def TrunkRoom(last_inp, inventory):
                         continued = 1
                 return continued
 
-                        
+
+offering = False
+ogre = True
+                 
 # Room 12
 # Ogre Clearing
 def OgreClearing(ogre_inp, inventory):
         alive = True
         room_num = 12
+        global offering
+        global ogre
+
+        if 'pick up' in ogre_inp.lower():
+                item = (ogre_inp.lower())[8:]
+                if item == 'key':
+                        if not ogre:
+                                items.pick_up(item, room_num)
+                        else:
+                                print("You have not pacified the ogre.")
+                else:
+                        items.pick_up(item, room_num)
+
+        elif 'put down' in ogre_inp.lower():
+                item = (ogre_inp.lower())[9:]
+                items.put_down(item, room_num[1])
+
+        elif 'use' in ogre_inp.lower():
+                item = (ogre_inp.lower())[4:]
+                if items.useItem(item) and item == 'fish':
+                        offering = True
+                else:
+                        items.useItem(item)
+        
+        elif ogre_inp.lower() == 'show inventory' or ogre_inp.lower() == 'inventory':
+                print("---------------------------------------------------------")
+                print(*items.inventory, sep = ', ')
 
         if ogre_inp.lower() == ("go north"):
                 room_num = 9
@@ -336,11 +528,10 @@ def OgreClearing(ogre_inp, inventory):
                 alive = False
         elif ogre_inp.lower() == ("befriend ogre"):
                 print("---------------------------------------------------------")
-                if fish in items:
+                if offering:
                         print("You befriended the ogre by giving the ogre the fish!")
                         print("In return the ogre gave you the key.")
-                        print("Key has been added to your inventory.")
-                        room_num = 9
+                        ogre = False
                 else:
                         print("---------------------------------------------------------")
                         print("You have nothing to befriend the ogre with.")
