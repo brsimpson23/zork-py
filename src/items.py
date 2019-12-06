@@ -22,9 +22,11 @@ def pick_up(itemName, roomNum):
     if itemName in allItems[roomNum]:
         allItems[roomNum].remove(itemName)
         inventory.append(itemName)
+        print("---------------------------------------------------------")
         print("Picked up", itemName)
         return itemName
     else:
+        print("---------------------------------------------------------")
         print("Not a valid item to pick up")
         return -1
 
@@ -32,19 +34,23 @@ def pick_up(itemName, roomNum):
 # and returns 0 to indicate that it was successfully removed.
 def put_down(itemName, roomNum):
     if itemName in inventory:
+        print("---------------------------------------------------------")
         print("You put down the", itemName)
         allItems[roomNum].append(itemName)
         inventory.remove(itemName)
         return 0
     else:
+        print("---------------------------------------------------------")
         print(itemName, 'not in inventory')
     return 0
 
 # def useItem()
 def useItem(itemName):
     if itemName in inventory:
+        print("---------------------------------------------------------")
         print("Using", itemName)
         return True
     else:
+        print("---------------------------------------------------------")
         print(itemName, "not in inventory")
         return False

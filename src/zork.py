@@ -26,14 +26,13 @@ def LakeRoom(north_house_inp, inventory):
 
         elif 'put down' in north_house_inp.lower():
                 item = (north_house_inp.lower())[9:]
-                items.put_down(item, room_num[1])
+                items.put_down(item, room_num)
 
         elif 'use' in north_house_inp.lower():
                 item = (north_house_inp.lower())[4:]
-                if items.useItem(item) and item == 'fishing rod':
-                        fishin = 1
-                else:
-                        items.useItem(item)             
+                if items.useItem(item):
+                        if item == 'fishing rod':
+                                fishin = 1         
         
         elif north_house_inp.lower() == 'show inventory' or north_house_inp.lower() == 'inventory':
                 print("---------------------------------------------------------")
@@ -83,14 +82,13 @@ def MazeEntrance(maze_inp, inventory):
 
         elif 'put down' in maze_inp.lower():
                 item = (maze_inp.lower())[9:]
-                items.put_down(item, room_num[1])
+                items.put_down(item, room_num)
 
         elif 'use' in maze_inp.lower():
                 item = (maze_inp.lower())[4:]
-                if items.useItem(item) and item == 'lantern':
-                        lit = True
-                else:
-                        items.useItem(item)
+                if items.useItem(item):
+                        if item == 'lantern':
+                                lit = True
         
         elif maze_inp.lower() == 'show inventory' or maze_inp.lower() == 'inventory':
                 print("---------------------------------------------------------")
@@ -124,14 +122,13 @@ def MazeInterior(maze_inp, inventory):
 
         elif 'put down' in maze_inp.lower():
                 item = (maze_inp.lower())[9:]
-                items.put_down(item, room_num[1])
+                items.put_down(item, room_num)
 
         elif 'use' in maze_inp.lower():
                 item = (maze_inp.lower())[4:]
-                if items.useItem(item) and item == 'lantern':
-                        lit = True
-                else:
-                        items.useItem(item)
+                if items.useItem(item):
+                        if item == 'lantern':
+                                lit = True
         
         elif maze_inp.lower() == 'show inventory' or maze_inp.lower() == 'inventory':
                 print("---------------------------------------------------------")
@@ -174,7 +171,7 @@ def FrontOfHouse(second, inventory):
 
         elif 'put down' in second.lower():
                 item = (second.lower())[9:]
-                items.put_down(item, room_num[1])
+                items.put_down(item, room_num)
 
         elif 'use' in second.lower():
                 item = (second.lower())[4:]
@@ -233,7 +230,7 @@ def BackOfHouse(back_inp, inventory):
 
         elif 'put down' in back_inp.lower():
                 item = (back_inp.lower())[9:]
-                items.put_down(item, room_num[1])
+                items.put_down(item, room_num)
 
         elif 'use' in back_inp.lower():
                 item = (back_inp.lower())[4:]
@@ -268,7 +265,7 @@ def KitchenRoom(kitchen_inp, inventory):
 
         elif 'put down' in kitchen_inp.lower():
                 item = (kitchen_inp.lower())[9:]
-                items.put_down(item, room_num[1])
+                items.put_down(item, room_num)
 
         elif 'use' in kitchen_inp.lower():
                 item = (kitchen_inp.lower())[4:]
@@ -278,7 +275,7 @@ def KitchenRoom(kitchen_inp, inventory):
                 print("---------------------------------------------------------")
                 print(*items.inventory, sep = ', ')
 
-        if kitchen_inp.lower() == ("go up stairs"):
+        elif kitchen_inp.lower() == ("go up stairs"):
                 room_num = 7
         elif kitchen_inp.lower() == ("go east"):
                 room_num = 5
@@ -316,7 +313,7 @@ def AtticRoom(attic_inp, inventory):
                 print("---------------------------------------------------------")
                 print(*items.inventory, sep = ', ')
 
-        if attic_inp.lower() == ("go down stairs"):
+        elif attic_inp.lower() == ("go down stairs"):
                 room_num = 6
         elif attic_inp.lower() == ("kick the bucket"):
                 alive = False
@@ -338,7 +335,7 @@ def ForestRoom(forest_inp, inventory):
 
         elif 'put down' in forest_inp.lower():
                 item = (forest_inp.lower())[9:]
-                items.put_down(item, room_num[1])
+                items.put_down(item, room_num)
 
         elif 'use' in forest_inp.lower():
                 item = (forest_inp.lower())[4:]
@@ -348,7 +345,7 @@ def ForestRoom(forest_inp, inventory):
                 print("---------------------------------------------------------")
                 print(*items.inventory, sep = ', ')
 
-        if forest_inp.lower() == ("go west"):
+        elif forest_inp.lower() == ("go west"):
                 print("---------------------------------------------------------")
                 print("You would need a machete to go further west.")
         elif forest_inp.lower() == ("go north"):
@@ -374,6 +371,7 @@ def ForestRoom(forest_inp, inventory):
 def GratingRoom(grating_inp, inventory):
         alive = True
         room_num = 9
+        global lit
 
         if 'pick up' in grating_inp.lower():
                 item = (grating_inp.lower())[8:]
@@ -381,17 +379,19 @@ def GratingRoom(grating_inp, inventory):
 
         elif 'put down' in grating_inp.lower():
                 item = (grating_inp.lower())[9:]
-                items.put_down(item, room_num[1])
+                items.put_down(item, room_num)
 
         elif 'use' in grating_inp.lower():
                 item = (grating_inp.lower())[4:]
-                items.useItem(item)
+                if items.useItem(item):
+                        if item == 'lantern':
+                                lit = True
         
         elif grating_inp.lower() == 'show inventory' or grating_inp.lower() == 'inventory':
                 print("---------------------------------------------------------")
                 print(*items.inventory, sep = ', ')
 
-        if grating_inp.lower() == ("go south"):
+        elif grating_inp.lower() == ("go south"):
                 room_num = 12
         elif grating_inp.lower() == ("descend grating"):
                 room_num = 10
@@ -408,6 +408,7 @@ def GratingRoom(grating_inp, inventory):
 def CaveRoom(cave_inp, inventory):
         alive = True
         room_num = 10
+        global lit
 
         if 'pick up' in cave_inp.lower():
                 item = (cave_inp.lower())[8:]
@@ -415,17 +416,19 @@ def CaveRoom(cave_inp, inventory):
 
         elif 'put down' in cave_inp.lower():
                 item = (cave_inp.lower())[9:]
-                items.put_down(item, room_num[1])
+                items.put_down(item, room_num)
 
         elif 'use' in cave_inp.lower():
                 item = (cave_inp.lower())[4:]
-                items.useItem(item)
+                if items.useItem(item):
+                        if item == 'lantern':
+                                lit = True
         
         elif cave_inp.lower() == 'show inventory' or cave_inp.lower() == 'inventory':
                 print("---------------------------------------------------------")
                 print(*items.inventory, sep = ', ')
 
-        if cave_inp.lower() == ("descend staircase"):
+        elif cave_inp.lower() == ("descend staircase"):
                 room_num = 11
         elif cave_inp.lower() == ("go south"):
                 room_num = 2
@@ -455,6 +458,7 @@ def CaveRoom(cave_inp, inventory):
 
 key = False
 locked = True
+statue = False
 
 # Room 11
 # End of game
@@ -463,6 +467,8 @@ def TrunkRoom(last_inp, inventory):
         room_num = 11
         global key
         global locked
+        global lit
+        global statue
 
         if 'pick up' in last_inp.lower():
                 item = (last_inp.lower())[8:]
@@ -470,20 +476,22 @@ def TrunkRoom(last_inp, inventory):
 
         elif 'put down' in last_inp.lower():
                 item = (last_inp.lower())[9:]
-                items.put_down(item, room_num[1])
+                items.put_down(item, room_num)
 
         elif 'use' in last_inp.lower():
                 item = (last_inp.lower())[4:]
-                if items.useItem(item) and item == 'key':
-                        key = True
-                else:
-                        items.useItem(item)
+                if items.useItem(item):
+                        if item == 'key':
+                                key = True
+                        if item == 'lantern':
+                                lit = True
+                
         
         elif last_inp.lower() == 'show inventory' or last_inp.lower() == 'inventory':
                 print("---------------------------------------------------------")
                 print(*items.inventory, sep = ', ')
 
-        if last_inp.lower() == ("unlock trunk"):
+        elif last_inp.lower() == ("unlock trunk"):
                 if key:
                         print("---------------------------------------------------------")
                         print("Trunk is now unlocked.")
@@ -491,10 +499,11 @@ def TrunkRoom(last_inp, inventory):
                         print("---------------------------------------------------------")
                         print("You need to use something to unlock the trunk")
 
-        if last_inp.lower() == ("open trunk"):
+        elif last_inp.lower() == ("open trunk"):
                 if not locked:
                         print("---------------------------------------------------------")
                         print("You have found the Jade Statue and have completed your quest!")
+                        statue = True
                 else:
                         print("---------------------------------------------------------")
                         print("The trunk is still locked.")
@@ -504,7 +513,7 @@ def TrunkRoom(last_inp, inventory):
         else:
                 print("---------------------------------------------------------")
 
-        if alive:
+        if alive and statue:
                 continued = 0
                 # Exit loop at the end of game
                 exit_inp = input("Do you want to continue? Y/N ")
@@ -538,20 +547,19 @@ def OgreClearing(ogre_inp, inventory):
 
         elif 'put down' in ogre_inp.lower():
                 item = (ogre_inp.lower())[9:]
-                items.put_down(item, room_num[1])
+                items.put_down(item, room_num)
 
         elif 'use' in ogre_inp.lower():
                 item = (ogre_inp.lower())[4:]
-                if items.useItem(item) and item == 'fish':
-                        offering = True
-                else:
-                        items.useItem(item)
+                if items.useItem(item):
+                        if item == 'fish':
+                                offering = True
         
         elif ogre_inp.lower() == 'show inventory' or ogre_inp.lower() == 'inventory':
                 print("---------------------------------------------------------")
                 print(*items.inventory, sep = ', ')
 
-        if ogre_inp.lower() == ("go north"):
+        elif ogre_inp.lower() == ("go north"):
                 room_num = 9
         elif ogre_inp.lower() == ("escape"):
                 room_num = 9
