@@ -16,7 +16,6 @@ def PlayZork():
             print("---------------------------------------------------------")
             print("You find yourself at the edge of a beautiful lake aside rolling hills.")
             print("A small pier juts out into the lake.")
-            print("A fishing rod rests on the pier.")
             print("(You can see a white house in the distance to the south.)")
             user_inp = input("What do you do? ")
             returns = zork.LakeRoom(user_inp, items.allItems)
@@ -66,7 +65,8 @@ def PlayZork():
         elif returns[0] == 7:
             print("---------------------------------------------------------")
             print("You go up and find yourself in the attic.")
-            print("The attic appears to be bare except for dust.")
+            if 'fishing rod' in items.allItems[7]:
+                print("The attic appears to be bare except for dust and a fishing rod in the corner.")
             user_inp = input("What do you do? ")
             returns = zork.AtticRoom(user_inp, items.allItems)
 

@@ -18,6 +18,7 @@ The custom room is the clearing in which the ogre was initially discovered.  How
 
 The options that produce an output include:
 1. Kill Ogre - you are never given any items to kill the ogre and so instead the ogre eats you.
-2. Befriend Ogre - If you do not have a fish in your inventory you cannot befriend the ogre and the ogre eats you.  In order to acquire a fish, you must say fish three times while at the lake.  
+2. Befriend Ogre - If you do not have a fish in your inventory you cannot befriend the ogre and the ogre eats you.  In order to acquire a fish, you must say fish four times while at the lake.  
+Additionally, the fishing rod is no longer at the pier, it has to be retrieved from the attic.
 By befriending the ogre by giving it the fish, you get the key that opens the trunk at the end of the game. Automatically returns to previous room.
 3. Escape/Go North - returns you to the previous room.
