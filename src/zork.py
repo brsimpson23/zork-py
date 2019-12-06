@@ -302,7 +302,7 @@ def AtticRoom(attic_inp, inventory):
 
         elif 'put down' in attic_inp.lower():
                 item = (attic_inp.lower())[9:]
-                items.put_down(item, room_num[1])
+                items.put_down(item, room_num)
 
         elif 'use' in attic_inp.lower():
                 item = (attic_inp.lower())[4:]
@@ -311,18 +311,6 @@ def AtticRoom(attic_inp, inventory):
         elif attic_inp.lower() == 'show inventory' or attic_inp.lower() == 'inventory':
                 print("---------------------------------------------------------")
                 print(*items.inventory, sep = ', ')
-
-        if 'pick up' in attic_inp.lower():
-            item = (attic_inp.lower())[8:]
-            items.pick_up(item, room_num)
-
-        elif 'put down' in attic_inp.lower():
-            item = (attic_inp.lower())[9:]
-            items.put_down(item, room_num)
-
-        elif 'use' in attic_inp.lower():
-            item = (attic_inp.lower())[4:]
-            items.useItem(item)
 
         elif attic_inp.lower() == 'show inventory' or attic_inp.lower() == 'inventory':
                 print("---------------------------------------------------------")
