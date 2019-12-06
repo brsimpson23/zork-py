@@ -1,6 +1,5 @@
 import items
 
-leaf = 0
 fish = 0
 fishin = 0
 caught = False
@@ -20,6 +19,7 @@ def LakeRoom(north_house_inp, inventory):
                         if caught:
                                 items.pick_up(item, room_num)
                         else:
+                                print("---------------------------------------------------------")
                                 print("You have not caught any fish.")
                 else:
                         items.pick_up(item, room_num)
@@ -158,20 +158,33 @@ def MazeInterior(maze_inp, inventory):
         return [room_num, alive]
 
 
+leaf = False
+leaflet = True
+
 # Room 4
 # Front of House
 def FrontOfHouse(second, inventory):
         global leaf
+        global leaflet
         alive = True
         room_num = 4
 
         if 'pick up' in second.lower():
                 item = (second.lower())[8:]
-                items.pick_up(item, room_num)
+                if item == 'leaflet' and leaf:
+                        leaflet = False
+                        items.pick_up(item, room_num)
+                elif item == 'leaflet' and not leaf:
+                        print("---------------------------------------------------------")
+                        print("Must open the mailbox to retrieve the leaflet.")
+                else:
+                        items.pick_up(item, room_num)
 
         elif 'put down' in second.lower():
                 item = (second.lower())[9:]
                 items.put_down(item, room_num)
+                if item == 'leaflet':
+                        leaflet = True
 
         elif 'use' in second.lower():
                 item = (second.lower())[4:]
@@ -185,9 +198,13 @@ def FrontOfHouse(second, inventory):
                 print("---------------------------------------------------------")
                 print("It is securely anchored.")
         elif second.lower() == ("open mailbox"):
-                print("---------------------------------------------------------")
-                print("Opening the small mailbox reveals a leaflet.")
-                leaf = 1
+                if leaflet:
+                        print("---------------------------------------------------------")
+                        print("Opening the small mailbox reveals a leaflet.")
+                else:
+                        print("---------------------------------------------------------")
+                        print("Mailbox is empty.")
+                leaf = True
         elif second.lower() == ("go north"):
                 room_num = 1
         elif second.lower() == ("go east"):
@@ -204,12 +221,16 @@ def FrontOfHouse(second, inventory):
         elif second.lower() == ("go southwest"):
                 room_num = 8
         elif second.lower() == ("read leaflet"):
-                if leaf == 0:
+                if not leaf:
                         print("---------------------------------------------------------")
                         print("Must open the mailbox to read the leaflet.")
-                elif leaf == 1:
-                        print("---------------------------------------------------------")
-                        print("Welcome to the Unofficial Python Version of Zork. Your mission is to find a Jade Statue.")
+                else:
+                        if 'leaflet' in items.inventory:
+                                print("---------------------------------------------------------")
+                                print("Welcome to the Unofficial Python Version of Zork. Your mission is to find a Jade Statue.")
+                        else:
+                                print("---------------------------------------------------------")
+                                print("You must pick up the leaflet to read the leaflet.")
         elif second.lower() == ("kick the bucket"):
                 alive = False
         else:
@@ -573,6 +594,7 @@ def OgreClearing(ogre_inp, inventory):
                 if offering:
                         print("You befriended the ogre by giving the ogre the fish!")
                         print("In return the ogre gave you the key.")
+                        (items.inventory).remove('fish')
                         ogre = False
                 else:
                         print("---------------------------------------------------------")

@@ -74,6 +74,7 @@ def PlayZork():
             print("---------------------------------------------------------")
             print("This is a forest, with trees in all directions.")
             print("To the east, there appears to be sunlight.")
+            print("(A secret path leads northeast into the forest.)")
             user_inp = input("What do you do? ")
             returns = zork.ForestRoom(user_inp, items.allItems)
 

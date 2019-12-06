@@ -4,7 +4,7 @@
 room1items = ['fish']
 room2items = []
 room3items = []
-room4items = []
+room4items = ['leaflet']
 room5items = []
 room6items = ['lantern']
 room7items = ['fishing rod']
