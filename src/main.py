@@ -103,7 +103,7 @@ def PlayZork():
         elif returns[0] == 12:
             print("---------------------------------------------------------")
             print("You enter into a clearing a see a massive ogre sitting by a stream.")
-            if ogre:
+            if zork.ogre:
                 print("You notice a key around the ogre's neck as it bends over to drink.")
                 print("The ogre hasn't noticed you yet, leaving open the possibility to escape.")
             user_inp = input("What do you do? ")

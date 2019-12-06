@@ -56,7 +56,7 @@ def LakeRoom(north_house_inp, inventory):
                                 caught = True
                 else:
                         print("---------------------------------------------------------")
-                        print("You are not fishing with anything.")
+                        print("You need to use the fishing rod in order to fish.")
                         
         elif north_house_inp.lower() == ("kick the bucket"):
                 alive = False
@@ -516,6 +516,7 @@ def TrunkRoom(last_inp, inventory):
                 if key:
                         print("---------------------------------------------------------")
                         print("Trunk is now unlocked.")
+                        locked = False
                 else:
                         print("---------------------------------------------------------")
                         print("You need to use something to unlock the trunk")
@@ -584,7 +585,12 @@ def OgreClearing(ogre_inp, inventory):
                 room_num = 9
         elif ogre_inp.lower() == ("escape"):
                 room_num = 9
-        elif ogre_inp.lower() == ("kill ogre"):
+        elif ogre_inp.lower() == ("kill ogre") or ogre_inp.lower() == ("fight ogre"):
+                print("---------------------------------------------------------")
+                print("You have nothing you can harm the ogre with.")
+                print("The ogre ate you!")
+                alive = False
+        elif ogre_inp.lower() == ("steal key") or ogre_inp.lower() == ("take key"):
                 print("---------------------------------------------------------")
                 print("You have nothing you can harm the ogre with.")
                 print("The ogre ate you!")
@@ -600,6 +606,7 @@ def OgreClearing(ogre_inp, inventory):
                         print("---------------------------------------------------------")
                         print("You have nothing to befriend the ogre with.")
                         print("The ogre ate you!")
+                        alive = False
         elif ogre_inp.lower() == ("kick the bucket"):
                 alive = False
         else:
