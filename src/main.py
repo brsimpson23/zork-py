@@ -15,6 +15,8 @@ def PlayZork():
             print("---------------------------------------------------------")
             print("You find yourself at the edge of a beautiful lake aside rolling hills.")
             print("A small pier juts out into the lake.")
+            if 'glass' in items.allItems[1]:
+                print("Sitting on the pier you see a glass full of some mysterious liquid.")
             print("(You can see a white house in the distance to the south.)")
             user_inp = input("What do you do? ")
             returns = zork.LakeRoom(user_inp)
@@ -74,6 +76,8 @@ def PlayZork():
             print("---------------------------------------------------------")
             print("This is a forest, with trees in all directions.")
             print("To the east, there appears to be sunlight.")
+            if 'coin' in items.allItems[8]:
+                print("When you look down you also notice a coin sparkling in the sunlight.")
             print("(A secret path leads northeast into the forest.)")
             user_inp = input("What do you do? ")
             returns = zork.ForestRoom(user_inp)
@@ -114,10 +118,13 @@ def PlayZork():
             continued = End()
             returns[1] = False
 
-    if not returns[1]:
+    if not returns[1] and returns[0] != 'end':
         continued = Death()
 
     if continued == 1:
+        items.allItems = [[], items.room1items, items.room2items, items.room3items, items.room4items, items.room5items, items.room6items,
+                          items.room7items, items.room8items, items.room9items, items.room10items, items.room11items, items.room12items]
+        items.inventory = []
         PlayZork()
 
 

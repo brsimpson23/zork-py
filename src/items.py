@@ -1,17 +1,17 @@
 # Items that exist in each room and the functions you can use to interact with them
 
 #TODO Define items in each room
-room1items = ['fish']
+room1items = ['fish', 'glass']
 room2items = ['ladder']
 room3items = []
 room4items = ['leaflet']
 room5items = []
 room6items = ['lantern']
 room7items = ['fishing rod']
-room8items = []
+room8items = ['coin']
 room9items = []
 room10items = ['note']
-room11items = []
+room11items = ['jewels']
 room12items = ['key']
 
 allItems = [[], room1items, room2items, room3items, room4items, room5items, room6items, room7items, room8items, room9items, room10items, room11items, room12items]
@@ -49,6 +49,10 @@ def useItem(itemName):
     if itemName in inventory:
         print("---------------------------------------------------------")
         print("Using", itemName)
+        if itemName == 'glass':
+            print("---------------------------------------------------------")
+            print("Fortunately the glass was full of water.")
+            print("Thanks for letting me drink. I was getting tired from speaking.")
         return True
     else:
         print("---------------------------------------------------------")

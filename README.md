@@ -47,3 +47,35 @@ Other Customizations (and Summary):
 6. Can return to the white house after going southwest.  This is accomplished by a 'go northeast' command.
 7. Ladder exists in maze entrance room.  This ladder can be used to get back to the surface.
 8. The skeleton holds a note regarding information about the maze and that the key is not in the maze.
+
+
+Speed Run Victory:
+The fastest way to beat the game is type the following steps in the following order:
+1. go east
+2. go west
+3. pick up lantern
+4. go up stairs
+5. pick up fishing rod
+6. go down stairs
+7. go east
+8. go south
+9. go north
+10. use fishing rod
+11. fish
+12. fish
+13. fish
+14. fish
+15. pick up fish
+16. go south
+17. go southwest
+18. go east
+19. go south
+20. use fish
+21. befriend ogre
+22. pick up key
+23. go north
+24. descend grating
+25. descend stairs
+26. use key
+27. unlock trunk
+28. open trunk
