@@ -68,6 +68,7 @@ def LakeRoom(north_house_inp):
 
 
 lit = False
+ladder = True
 
 # Room 2
 # Maze Entrance
@@ -75,10 +76,13 @@ def MazeEntrance(maze_inp):
         alive = True
         room_num = 2
         global lit
+        global ladder
 
         if 'pick up' in maze_inp.lower():
                 item = (maze_inp.lower())[8:]
                 items.pick_up(item, room_num)
+                if item == 'ladder':
+                        ladder = False
 
         elif 'put down' in maze_inp.lower():
                 item = (maze_inp.lower())[9:]
@@ -95,8 +99,12 @@ def MazeEntrance(maze_inp):
                 print(*items.inventory, sep = ', ')
 
         elif maze_inp.lower() == 'explore' or maze_inp.lower() == 'explore cavern':
-                print("---------------------------------------------------------")
-                print("You explore the cavern and find nothing.")
+                if not ladder:
+                        print("---------------------------------------------------------")
+                        print("You explore the cavern and find nothing.")
+                else:
+                        print("---------------------------------------------------------")
+                        print("You explore the cavern and find a ladder hidden in the far corner.")
 
         elif maze_inp.lower() == ("go north"):
                 room_num = 10
@@ -434,12 +442,15 @@ def GratingRoom(grating_inp):
         return [room_num, alive]
 
 
+height = False
+
 # Room 10
 # Grating Loop and Cave Input
 def CaveRoom(cave_inp):
         alive = True
         room_num = 10
         global lit
+        global height
 
         if 'pick up' in cave_inp.lower():
                 item = (cave_inp.lower())[8:]
@@ -454,14 +465,19 @@ def CaveRoom(cave_inp):
                 if items.useItem(item):
                         if item == 'lantern':
                                 lit = True
+                        if item == 'ladder':
+                                height = True
         
         elif cave_inp.lower() == 'show inventory' or cave_inp.lower() == 'inventory':
                 print("---------------------------------------------------------")
                 print(*items.inventory, sep = ', ')
 
         elif cave_inp.lower() == ("go up") or cave_inp.lower() == ("ascend grating") or cave_inp.lower() == ("go up grating"):
-                print("---------------------------------------------------------")
-                print("You cannot jump high enough to escape.")
+                if height:
+                        room_num = 9
+                else:
+                        print("---------------------------------------------------------")
+                        print("You cannot jump high enough to escape.")
         elif cave_inp.lower() == ("descend staircase") or cave_inp.lower() == ("go down stairs"):
                 room_num = 11
         elif cave_inp.lower() == ("go south"):

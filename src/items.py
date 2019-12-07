@@ -2,7 +2,7 @@
 
 #TODO Define items in each room
 room1items = ['fish']
-room2items = []
+room2items = ['ladder']
 room3items = []
 room4items = ['leaflet']
 room5items = []

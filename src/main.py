@@ -21,8 +21,8 @@ def PlayZork():
 
         if returns[0] == 2:
             print("---------------------------------------------------------")
-            print("You find yourself in a large cavern. ")
-            print("There appears to be another path to the south.")
+            print("You find yourself in a large cavern. There appears to be another path to the south.")
+            print("It occurs to you it may be worth exploring the cavern.")
             print("The new path is even darker than the one you are currently on.")
             user_inp = input("What do you do? ")
             returns = zork.MazeEntrance(user_inp)
