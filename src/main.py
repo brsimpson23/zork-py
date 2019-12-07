@@ -51,6 +51,8 @@ def PlayZork():
             print("---------------------------------------------------------")
             print("You find yourself on the backside of the house.")
             print("There is a window slightly ajar to the west.")
+            if 'caterpillar' in items.allItems[5]:
+                print("On the window sill you notice a colorful caterpillar.")
             print("A path to the south leads somewhere mysterious.")
             user_inp = input("What do you do? ")
             returns = zork.BackOfHouse(user_inp)

@@ -5,7 +5,7 @@ room1items = ['fish', 'glass']
 room2items = ['ladder']
 room3items = []
 room4items = ['leaflet']
-room5items = []
+room5items = ['caterpillar']
 room6items = ['lantern']
 room7items = ['fishing rod']
 room8items = ['coin']
@@ -53,6 +53,11 @@ def useItem(itemName):
             print("---------------------------------------------------------")
             print("Fortunately the glass was full of water.")
             print("Thanks for letting me drink. I was getting tired from speaking.")
+        elif itemName == 'caterpillar':
+            print("---------------------------------------------------------")
+            print("By using the caterpillar it turned into a butterfly.")
+            print("Hopfully it wasn't useful.")
+            inventory.remove(itemName)
         return True
     else:
         print("---------------------------------------------------------")
