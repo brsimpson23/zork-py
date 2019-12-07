@@ -10,7 +10,7 @@ room6items = ['lantern']
 room7items = ['fishing rod']
 room8items = []
 room9items = []
-room10items = []
+room10items = ['note']
 room11items = []
 room12items = ['key']
 

@@ -90,6 +90,8 @@ def PlayZork():
             print("You are in a tiny cave with a dark, forbidding staircase leading down.")
             print("To the south you also see a dark, winding path leading into the unknown.")
             print("There is a skeleton of a human male in one corner.")
+            if zork.lit:
+                print("The skeleton also appears to be holding a note.")
             user_inp = input("What do you do? ")
             returns = zork.CaveRoom(user_inp)
 

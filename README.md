@@ -45,3 +45,5 @@ Other Customizations (and Summary):
 4. Must use the key to open the chest.
 5. Ogre can now eat you with the wrong prompt.  Not as broad of a range of commands for death as the grue.
 6. Can return to the white house after going southwest.  This is accomplished by a 'go northeast' command.
+7. Ladder exists in maze entrance room.  This ladder can be used to get back to the surface.
+8. The skeleton holds a note regarding information about the maze and that the key is not in the maze.

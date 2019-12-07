@@ -443,6 +443,8 @@ def GratingRoom(grating_inp):
 
 
 height = False
+note = False
+midway = False
 
 # Room 10
 # Grating Loop and Cave Input
@@ -451,10 +453,19 @@ def CaveRoom(cave_inp):
         room_num = 10
         global lit
         global height
+        global note
+        global midway
 
         if 'pick up' in cave_inp.lower():
                 item = (cave_inp.lower())[8:]
-                items.pick_up(item, room_num)
+                if item == 'note':
+                        if lit or midway:
+                                items.pick_up(item, room_num)
+                                note = True
+                        else:
+                                print("No such item is visible.")
+                else:
+                        items.pick_up(item, room_num)
 
         elif 'put down' in cave_inp.lower():
                 item = (cave_inp.lower())[9:]
@@ -494,10 +505,25 @@ def CaveRoom(cave_inp):
         elif cave_inp.lower() == ("break skeleton"):
                 print("---------------------------------------------------------")
                 print("I have two questions: Why and With What?")
+        elif cave_inp.lower() == ("inspect skeleton"):
+                print("---------------------------------------------------------")
+                print("Upon further inspection the skeleton appears to be holding a note.")
+                midway = True
         elif cave_inp.lower() == ("go down staircase"):
                 room_num = 11
         elif cave_inp.lower() == ("scale staircase"):
                 room_num = 11
+        elif cave_inp.lower() == ("read note"):
+                if note:
+                        print("---------------------------------------------------------")
+                        print("BEWARE THE MAZE")
+                        print("THE MAZE BRINGS ONLY DEATH AT THE HANDS OF THE GRUE")
+                        print("ESCAPE ONLY FROM WHENCE YOU CAME")
+                        print()
+                        print("THE KEY IS NOT IN THE MAZE")
+                else:
+                        print("---------------------------------------------------------")
+                        print("Note is not in inventory")
         elif cave_inp.lower() == ("kick the bucket"):
                 alive = False
         else:
